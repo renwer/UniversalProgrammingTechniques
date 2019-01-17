@@ -31,11 +31,8 @@ public class GeneratorTest {
                 .stream().map(e -> e._pesel)
                 .collect(Collectors.toList()));
 
-        boolean peselValidity = true;
-
         for (String pesel : allPesels) {
             System.out.println(pesel);
-
             int A = pesel.charAt(0);
             int B = pesel.charAt(1);
             int C = pesel.charAt(2);
@@ -46,7 +43,6 @@ public class GeneratorTest {
             int H = pesel.charAt(7);
             int I = pesel.charAt(8);
             int J = pesel.charAt(9);
-
             int controlDigit = (9 * A + 7 * B + 3 * C + D + 9 * E + 7 * F + 3 * G + H + 9 * I + 7 * J) % 10;
             System.out.println(controlDigit);
         }

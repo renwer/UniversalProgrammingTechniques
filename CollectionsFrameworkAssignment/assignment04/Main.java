@@ -21,5 +21,10 @@ public class Main {
         System.out.println(database.sortedByFirstName());
         System.out.println(database.sortedBySurnameFirstNameAndBirthdate());
         System.out.println(database.bornOnDay(formatter.parse("1879-03-14 00:00:00")));
+
+        database.serialize();
+
+        database.deserialize("db");
+
     }
 }

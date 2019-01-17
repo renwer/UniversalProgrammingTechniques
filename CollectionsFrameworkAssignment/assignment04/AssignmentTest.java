@@ -5,6 +5,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
+import java.io.FileReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
@@ -17,8 +21,8 @@ public class AssignmentTest {
     @Before
     public void init() {
         try {
-            database = new PersonDatabase(parser.parse(new File("/home/lofi/Programming/PJATK/UTP/UniversalProgrammingTechniques/CollectionsFrameworkAssignment/assignment04/data.txt")));
             parser = new InputParser();
+            database = new PersonDatabase(parser.parse(new File("/home/lofi/Programming/PJATK/UTP/UniversalProgrammingTechniques/CollectionsFrameworkAssignment/assignment04/data.txt")));
         } catch (Exception e) {
             //...
         }
@@ -46,13 +50,16 @@ public class AssignmentTest {
     }
 
     @Test
-    public void hecc() {
-        try {
-            System.out.println(database.bornOnDay(formatter.parse("1815-11-02 00:00:00")).size());
-        } catch (Exception e) {
-            //...
-        }
+    public void assertSerializeGeneratesFile() throws Exception {
+        database.serialize();
+        File dbReader = new File("db");
+        Assert.assertTrue(Files.size(Paths.get("db")) > 0);
+    }
 
+    @Test
+    public void deserializationLogs() {
+        database.serialize();
+        database.deserialize("db");
     }
 
 }
